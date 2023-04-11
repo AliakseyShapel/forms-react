@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 import useInput from '../hooks/use-input';
 
 const validateEmail = (email) => {
@@ -20,37 +18,30 @@ const SimpleInput = (props) => {
     reset: resetNameInput,
   } = useInput((value) => value.trim() !== '');
 
-  const [enteredEmail, setEnteredEmail] = useState('');
-  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
-
-  const enteredEmailIsValid = validateEmail(enteredEmail);
-  const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
+  const {
+    enteredValue: enteredEmail,
+    valueIsValid: enteredEmailIsValid,
+    hasError: emailInputHasError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmailInput,
+  } = useInput(validateEmail);
 
   const formIsValid = enteredNameIsValid && enteredEmailIsValid;
 
-  const emailInputChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
-  };
-
-  const emailInputBlurHandler = (event) => {
-    setEnteredEmailTouched(true);
-  };
-
   const formSubmissionHandler = (event) => {
     event.preventDefault();
-    setEnteredEmailTouched(true);
     if (!enteredNameIsValid || !enteredEmailIsValid) {
       return;
     }
     resetNameInput();
-    setEnteredEmail('');
-    setEnteredEmailTouched(false);
+    resetEmailInput();
   };
 
   const nameInputClasses = `form-control ${nameInputHasError ? 'invalid' : ''}`;
 
   const emailInputClasses = `form-control ${
-    emailInputIsInvalid ? 'invalid' : ''
+    emailInputHasError ? 'invalid' : ''
   }`;
 
   return (
@@ -74,10 +65,10 @@ const SimpleInput = (props) => {
           value={enteredEmail}
           type="email"
           id="email"
-          onChange={emailInputChangeHandler}
-          onBlur={emailInputBlurHandler}
+          onChange={emailChangeHandler}
+          onBlur={emailBlurHandler}
         />
-        {emailInputIsInvalid && (
+        {emailInputHasError && (
           <p className="error-text">Please enter correct email address.</p>
         )}
       </div>
