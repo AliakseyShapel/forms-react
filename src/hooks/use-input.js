@@ -15,7 +15,7 @@ const useInput = (validateFn) => {
     setIsTouched(true);
   };
 
-  const reset = () => {
+  const resetInput = () => {
     setEnteredValue('');
     setIsTouched(false);
   };
@@ -26,7 +26,7 @@ const useInput = (validateFn) => {
     hasError,
     valueChangeHandler,
     inputBlurHandler,
-    reset,
+    resetInput,
   };
 };
 

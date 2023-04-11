@@ -1,12 +1,6 @@
 import useInput from '../hooks/use-input';
 
-const validateEmail = (email) => {
-  return String(email)
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-};
+import validateEmail from '../utility/validate-email';
 
 const SimpleInput = (props) => {
   const {
@@ -15,7 +9,7 @@ const SimpleInput = (props) => {
     hasError: nameInputHasError,
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
-    reset: resetNameInput,
+    resetInput: resetNameInput,
   } = useInput((value) => value.trim() !== '');
 
   const {
@@ -24,7 +18,7 @@ const SimpleInput = (props) => {
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
-    reset: resetEmailInput,
+    resetInput: resetEmailInput,
   } = useInput(validateEmail);
 
   const formIsValid = enteredNameIsValid && enteredEmailIsValid;
