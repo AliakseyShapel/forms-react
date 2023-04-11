@@ -4,7 +4,7 @@ import validateEmail from '../utility/validate-email';
 
 const BasicForm = (props) => {
   const {
-    enteredValue: enteredFirstName,
+    value: enteredFirstName,
     valueIsValid: enteredFirstNameIsValid,
     hasError: firstNameInputHasError,
     valueChangeHandler: firstNameChangeHandler,
@@ -13,7 +13,7 @@ const BasicForm = (props) => {
   } = useInput((value) => value.trim() !== '');
 
   const {
-    enteredValue: enteredLastName,
+    value: enteredLastName,
     valueIsValid: enteredLastNameIsValid,
     hasError: lastNameInputHasError,
     valueChangeHandler: lastNameChangeHandler,
@@ -22,7 +22,7 @@ const BasicForm = (props) => {
   } = useInput((value) => value.trim() !== '');
 
   const {
-    enteredValue: enteredEmail,
+    value: enteredEmail,
     valueIsValid: enteredEmailIsValid,
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,

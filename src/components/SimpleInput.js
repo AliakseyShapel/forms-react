@@ -4,7 +4,7 @@ import validateEmail from '../utility/validate-email';
 
 const SimpleInput = (props) => {
   const {
-    enteredValue: enteredName,
+    value: enteredName,
     valueIsValid: enteredNameIsValid,
     hasError: nameInputHasError,
     valueChangeHandler: nameChangeHandler,
@@ -13,7 +13,7 @@ const SimpleInput = (props) => {
   } = useInput((value) => value.trim() !== '');
 
   const {
-    enteredValue: enteredEmail,
+    value: enteredEmail,
     valueIsValid: enteredEmailIsValid,
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
